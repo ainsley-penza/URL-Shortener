@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 import random
 import xml.etree.ElementTree as ET
 
+host = "192.168.0.105" #Change this to your preferred host. (when you open the browser, type this url)
+
 xmlFile = "Python/URL Shortener/data.xml"
 tree = ET.parse(xmlFile)
 root = tree.getroot()
@@ -31,7 +33,7 @@ def indexPost():
     #Save the URL in an XML
     xmlConfiguration(url, urlID)
 
-    urlToPass = "192.168.0.105:5000/url/{}".format(urlID)
+    urlToPass = "{}:5000/url/{}".format(host, urlID)
     return render_template("clipboard.html", url=urlToPass)
 
 @app.route("/url/<ID>")
@@ -43,4 +45,4 @@ def indexID(ID):
 
     return redirect(url)
 
-app.run(debug=True, host="192.168.0.105")
+app.run(debug=True, host=host)

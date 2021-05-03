@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortened</title>
+    <link rel="stylesheet" href="../static/clipboard.css">
+
+    <script>
+        function copyText() {
+            var url = document.getElementById("url");
+            var copyButton = document.getElementById("copyButton")
+
+            url.select();
+            url.setSelectionRange(0, 99999);
+
+            document.execCommand("copy");
+        
+            copyButton.value = "Copied"
+        }
+    </script>
+</head>
+<body>
+    <input type="text" value="{{ url }}" id="url">
+
+    <button id="button" onclick="copyText()" value="Copy" id="copyButton">Copy URL</button>
+
+    <a id="redirect" href="/">Shorten Another URL</a>
+</body>
+</html>
